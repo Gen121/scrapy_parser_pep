@@ -44,10 +44,6 @@ def test_run_scrapy(monkeypatch, tmp_path):
         file for file in mock_base_dir.glob('**/*')
         if str(file).endswith('.csv')
     ]
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    print(output_files)
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-
     assert dirs == ['results'], (
         'Убедитесь что в директории проекта создается директория `results` для '
         'вывода в файл результатов.'
