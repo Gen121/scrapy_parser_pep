@@ -21,11 +21,8 @@ class PepParsePipeline:
         res_dir_path.mkdir(exist_ok=True)
         file_name = f'status_summary_{date_time}.csv'
         self.file_path = Path.joinpath(res_dir_path, file_name)
+        self.statuses['Total'] = sum(self.statuses.values())
         with open(self.file_path, 'w', encoding='utf-8') as f:
-            writer = csv.DictWriter(f, fieldnames=['Статус', 'Количество'])
-            writer.writeheader()
-            total = 0
-            for status, count in self.statuses.items():
-                total += count
-                writer.writerow({'Статус': status, 'Количество': count})
-            writer.writerow({'Статус': 'Total', 'Количество': total})
+            writer = csv.writer(f)
+            writer.writerow(['Статус', 'Количество'])
+            writer.writerows(self.statuses.items())
